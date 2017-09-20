@@ -5,7 +5,7 @@ import { toRem } from '../utils/utils'
 
 const Line = styled.div`
 	height: 10px;
-	border-bottom: 1px solid ${theme.divider};
+	border-bottom: 1px solid ${theme.lightBlue};
 	width: 50%;
 `
 

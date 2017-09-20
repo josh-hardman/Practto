@@ -4,15 +4,10 @@ import styled from 'styled-components'
 import theme from '../theme/theme'
 import { toRem } from '../utils/utils'
 
-const StyledStaff = styled.div`
-	height: 360px;
-	background: grey;
-	opacity: 0.4;
-`
-
 class Staff extends Component {
 	state = {
-		index: 0
+		index: 0,
+		items: this.props.items
 	}
 
 	static propTypes = {
@@ -26,13 +21,15 @@ class Staff extends Component {
 	}
 
 	handleChange = () => {
-		this.setState({
-			index: this.state.index + 1
+		this.setState(prevState, () => {
+			index: prevState.index + 1
 		})
 	}
 
 	render() {
-		return <StyledStaff onClick={this.handleChange} />
+		const { items } = this.props
+		const { index } = this.state
+		return <div onClick={this.handleChange}>{items[index].name}</div>
 	}
 }
 

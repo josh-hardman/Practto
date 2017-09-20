@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { ThemeProvider } from 'styled-components'
 import theme from '../theme/theme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import './index.css'
 
@@ -42,20 +43,22 @@ const Header = () => (
 )
 
 const TemplateWrapper = ({ children }) => (
-	<ThemeProvider theme={theme}>
-		<div>
-			<Helmet
-				title="Practto"
-				meta={[
-					{ name: 'description', content: 'Sample' },
-					{ name: 'keywords', content: 'sample, something' }
-				]}
-			/>
-			<Header />
+	<MuiThemeProvider>
+		<ThemeProvider theme={theme}>
+			<div>
+				<Helmet
+					title="Practto"
+					meta={[
+						{ name: 'description', content: 'Sample' },
+						{ name: 'keywords', content: 'sample, something' }
+					]}
+				/>
+				<Header />
 
-			{children()}
-		</div>
-	</ThemeProvider>
+				{children()}
+			</div>
+		</ThemeProvider>
+	</MuiThemeProvider>
 )
 
 TemplateWrapper.propTypes = {
