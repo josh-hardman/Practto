@@ -37,7 +37,7 @@ const Padding = styled.div`
 	max-width: 960px;
 	padding: 0 ${toRem(12)};
 	padding-bottom: ${props => (props.squareBottom ? toRem(20) : toRem(60))};
-	padding-top: ${toRem(8)};
+	padding-top: ${toRem(18)};
 `
 
 const Section = ({ children, background, zIndex, squareBottom }) => (

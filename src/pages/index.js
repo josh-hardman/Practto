@@ -16,6 +16,9 @@ import DatePicker from 'material-ui/DatePicker'
 import AutoComplete from 'material-ui/AutoComplete'
 import Toggle from 'material-ui/Toggle'
 import RaisedButton from 'material-ui/RaisedButton'
+import styled from 'styled-components'
+import { toRem } from '../utils/utils'
+import { toggleLabel } from '../theme/materialStyles'
 
 const fruit = [
 	'Apple',
@@ -101,6 +104,20 @@ const fruit = [
 	'Watermelon'
 ]
 
+const FinePrint = styled.p`
+	padding: ${toRem(12)} 0;
+	font-size: ${toRem(8)};
+	line-height: ${toRem(12)};
+`
+
+const OffersWrapper = styled.div`margin-bottom: ${toRem(12)};`
+
+const Offers = styled.h3`
+	font-size: ${toRem(14)};
+	margin: ${toRem(24)} 0 ${toRem(12)};
+	font-weight: normal;
+`
+
 const IndexPage = ({ theme }) => (
 	<div>
 		<Section background={theme.lightBlue} zIndex={-1}>
@@ -147,10 +164,12 @@ const IndexPage = ({ theme }) => (
 		</Section>
 
 		<Section background={theme.lightRed} zIndex={-3}>
-			<SectionHeader color={theme.textBlack}>
-				Patient Testimonials
-			</SectionHeader>
-			<Testimonials />
+			<Card background={theme.aliceBlue}>
+				<SectionHeader color={theme.textBlack}>
+					Patient Testimonials
+				</SectionHeader>
+				<Testimonials />
+			</Card>
 		</Section>
 
 		<Section background={theme.white} zIndex={-4}>
@@ -184,15 +203,36 @@ const IndexPage = ({ theme }) => (
 					dataSource={fruit}
 					maxSearchResults={5}
 				/>
-				<Toggle label="Free Consultation" labelPosition="right" />
-				<Toggle label="50% off first cleaning" labelPosition="right" />
-				<Toggle label="$20 cash back" labelPosition="right" />
+				<OffersWrapper>
+					<Offers>Special Offers</Offers>
+					<Toggle
+						labelStyle={toggleLabel}
+						label="Free Consultation"
+						labelPosition="right"
+					/>
+					<Toggle
+						labelStyle={toggleLabel}
+						label="50% off first cleaning"
+						labelPosition="right"
+					/>
+					<Toggle
+						labelStyle={toggleLabel}
+						label="$20 cash back"
+						labelPosition="right"
+					/>
+				</OffersWrapper>
+
 				<TextField
 					floatingLabelText="Additional Comments"
 					multiLine={true}
 					floatingLabelFixed={true}
 					rows={1}
 				/>
+				<FinePrint>
+					* This form will request an appointment on your behalf. You wiill
+					receive a follow up via email or phone from the listed practice to
+					confirm your visit.
+				</FinePrint>
 				<RaisedButton label="Submit" primary />
 			</Card>
 		</Section>

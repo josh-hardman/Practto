@@ -13,7 +13,7 @@ const StyledDivider = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-top: ${toRem(32)};
+	padding-top: ${toRem(18)};
 	padding-bottom: ${toRem(32)};
 `
 
