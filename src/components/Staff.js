@@ -4,12 +4,20 @@ import styled from 'styled-components'
 import theme from '../theme/theme'
 import { toRem } from '../utils/utils'
 import Paper from 'material-ui/Paper'
-import Chip from 'material-ui/Chip'
+import Chip from '../components/Chip'
 import Avatar from '../components/Avatar'
+import SectionParagraph from '../components/SectionParagraph'
 
 const ChipWrapper = styled.div`
+	margin-top: ${toRem(18)};
 	display: flex;
 	flex-wrap: wrap;
+`
+
+const DescriptionWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	padding: 0 ${toRem(20)};
 `
 
 const Name = styled.h2`
@@ -17,6 +25,7 @@ const Name = styled.h2`
 	font-size: ${toRem(16)};
 	color: ${theme.textBlack};
 	font-weight: normal;
+	margin-bottom: ${toRem(8)};
 `
 
 class Staff extends Component {
@@ -46,6 +55,11 @@ class Staff extends Component {
 			<div>
 				<Avatar src={items[index].href} />
 				<Name>{items[index].name}</Name>
+				<DescriptionWrapper>
+					<SectionParagraph color={theme.textBlack}>
+						{items[index].description}
+					</SectionParagraph>
+				</DescriptionWrapper>
 				<ChipWrapper>
 					{items.map((item, i) => (
 						<Chip key={i} onClick={() => this.handleSelect(i)}>

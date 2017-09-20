@@ -135,7 +135,7 @@ const IndexPage = ({ theme }) => (
 
 				<Divider />
 
-				<SectionHeader color={theme.textBlack}>Staff</SectionHeader>
+				<SectionHeader color={theme.textBlack}>Staff Members</SectionHeader>
 				<Staff
 					items={[
 						{
