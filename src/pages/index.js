@@ -139,17 +139,20 @@ const IndexPage = ({ theme }) => (
 				<Staff
 					items={[
 						{
-							href: 'lukeurl',
+							href:
+								'http://doctorsquaremohali.com/wp-content/uploads/2017/03/ankur-300x300.jpg',
 							name: 'Luke Skywalker',
 							description: 'Luke is strong in the force'
 						},
 						{
-							href: 'vaderurl',
+							href:
+								'http://www.dentaltownsmiles.com/wp-content/uploads/2015/03/kid-with-braces-square.jpg',
 							name: 'Darth Vader',
 							description: 'Vader with force choke you'
 						},
 						{
-							href: 'solourl',
+							href:
+								'https://www.memorialdental.ca/wp-content/uploads/2016/02/dr-mohamed-soliman-memorial-dental.jpg',
 							name: 'Han Solo',
 							description: 'A smuggler that is wanted in the galaxy'
 						}
