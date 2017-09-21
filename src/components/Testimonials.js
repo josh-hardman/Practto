@@ -4,35 +4,84 @@ import styled from 'styled-components'
 import theme from '../theme/theme'
 import { toRem } from '../utils/utils'
 
-const StyledTestimonial = styled.div`
-	height: 360px;
-	background: grey;
-	opacity: 0.4;
+import ReactSwipe from 'react-swipe'
+import ArrowRight from 'react-icons/lib/fa/angle-right'
+import ArrowLeft from 'react-icons/lib/fa/angle-left'
+
+const TrayWrapper = styled.div`
+	position: relative;
+	overflow: hidden;
 `
 
-class Testimonials extends Component {
+const Item = styled.div`
+	width: 30%;
+	float: left;
+`
+
+const ButtonLeft = styled.button`
+	background: none;
+	height: 100%;
+	border: none;
+	${'' /* outline       : none; */} position: absolute;
+	left: 0;
+	top: 0px;
+	bottom: 0px;
+	z-index: 2;
+`
+
+const ButtonRight = styled.button`
+	background: none;
+	height: 100%;
+	border: none;
+	${'' /* outline: none; */} position: absolute;
+	right: 0;
+	top: 0px;
+	bottom: 0px;
+	z-index: 2;
+`
+
+const ReviewWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 4px;
+`
+
+export default class Tray extends Component {
 	state = {
-		index: 0
+		index: 0,
+		items: this.props.items
 	}
 
-	static propTypes = {
-		items: PropTypes.arrayOf(
-			PropTypes.shape({
-				name: PropTypes.string.isRequired,
-				content: PropTypes.string.isRequired
-			})
-		).isRequired
+	handleLeft = () => {
+		console.log('left')
+		this.slideshow.prev()
 	}
 
-	handleChange = () => {
-		this.setState({
-			index: this.state.index + 1
-		})
+	handleRight = () => {
+		this.slideshow.next()
 	}
 
 	render() {
-		return <StyledTestimonial onClick={this.handleChange} />
-	}
-}
+		const { items } = this.state
 
-export default Testimonials
+		return (
+			<TrayWrapper>
+				<ButtonLeft onClick={this.handleLeft}>
+					<ArrowLeft />
+				</ButtonLeft>
+				<ButtonRight onClick={this.handleRight}>
+					<ArrowRight />
+				</ButtonRight>
+				<ReactSwipe
+					ref={node => (this.slideshow = node)}
+					swipeOptions={{ continuous: true }}
+				>
+					{items.map((item, i) => <ReviewWrapper>{item}</ReviewWrapper>)}
+				</ReactSwipe>
+			</TrayWrapper>
+		)
+	}
+
+	static propTypes = {}
+}

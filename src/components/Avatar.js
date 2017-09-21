@@ -5,7 +5,7 @@ import { toRem } from '../utils/utils'
 
 const Avatar = styled.img`
 	width: auto;
-	height: 300px;
+	height: 250px;
 	border-radius: 100%;
 `
 

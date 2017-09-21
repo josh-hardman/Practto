@@ -171,7 +171,7 @@ const IndexPage = ({ theme }) => (
 				<SectionHeader color={theme.textBlack}>
 					Patient Testimonials
 				</SectionHeader>
-				<Testimonials />
+				<Testimonials items={[1, 2, 3, 4, 5, 6]} />
 			</Card>
 		</Section>
 
