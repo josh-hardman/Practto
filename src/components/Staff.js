@@ -31,7 +31,7 @@ const Name = styled.h2`
 	font-size: ${toRem(16)};
 	color: ${theme.textBlack};
 	font-weight: normal;
-	margin-bottom: ${toRem(8)};
+	margin: ${toRem(8)} 0;
 `
 
 class Staff extends Component {

@@ -14,6 +14,7 @@ const Chip = styled.div`
 
 	&:hover {
 		background-color: ${theme.mediumGrey};
+		cursor: pointer;
 	}
 
 	&:active {
