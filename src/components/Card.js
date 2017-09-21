@@ -8,6 +8,7 @@ const StyledCard = styled.div`
 	box-shadow: ${theme.dropShadow};
 	padding: ${toRem(18)};
 	border-radius: 5px;
+	position: relative;
 `
 
 export default StyledCard

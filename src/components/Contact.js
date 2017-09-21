@@ -50,7 +50,7 @@ const List = styled.ul`
 	line-height: ${toRem(18)};
 `
 
-const MapContainer = styled.div`padding: ${toRem(24)} 0;`
+const MapContainer = styled.div`padding: ${toRem(24)} ${toRem(14)};`
 
 const MapWithInfoWindow = compose(
 	withStateHandlers(

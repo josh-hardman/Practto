@@ -167,29 +167,27 @@ const IndexPage = ({ theme }) => (
 		</Section>
 
 		<Section background={theme.lightRed} zIndex={-3}>
-			<Card background={theme.aliceBlue}>
-				<SectionHeader color={theme.textBlack}>
-					Patient Testimonials
-				</SectionHeader>
-				<Testimonials
-					items={[
-						{
-							name: 'Maloree Purdy Lom',
-							review:
-								'I took my son here and we had an awesome experience. Staff was super friendly and life is good'
-						},
-						{
-							name: 'Darth Vader',
-							review:
-								'The force is strong with this one. Its potential to cause problems has certainly been confirmed'
-						},
-						{
-							name: 'Luke Skywalker',
-							review: 'Uncle Owen, this R2 units got a bad motivator!'
-						}
-					]}
-				/>
-			</Card>
+			{/* <Card background={theme.aliceBlue}> */}
+			<SectionHeader color={theme.white}>Patient Testimonials</SectionHeader>
+			<Testimonials
+				items={[
+					{
+						name: 'Maloree Purdy Lom',
+						review:
+							'I took my son here and we had an awesome experience. Staff was super friendly and life is good'
+					},
+					{
+						name: 'Darth Vader',
+						review:
+							'The force is strong with this one. Its potential to cause problems has certainly been confirmed'
+					},
+					{
+						name: 'Luke Skywalker',
+						review: 'Uncle Owen, this R2 units got a bad motivator!'
+					}
+				]}
+			/>
+			{/* </Card> */}
 		</Section>
 
 		<Section background={theme.white} zIndex={-4}>

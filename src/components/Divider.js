@@ -5,7 +5,8 @@ import { toRem } from '../utils/utils'
 
 const Line = styled.div`
 	height: 10px;
-	border-bottom: 1px solid ${theme.lightBlue};
+	border-bottom: 1px solid
+		${props => (props.color ? props.color : theme.lightBlue)};
 	width: 50%;
 `
 
@@ -17,9 +18,9 @@ const StyledDivider = styled.div`
 	padding-bottom: ${toRem(32)};
 `
 
-const Divider = () => (
+const Divider = ({ color }) => (
 	<StyledDivider>
-		<Line />
+		<Line color={color} />
 	</StyledDivider>
 )
 

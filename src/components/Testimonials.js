@@ -7,13 +7,20 @@ import { toRem } from '../utils/utils'
 import ReactSwipe from 'react-swipe'
 import ArrowRight from 'react-icons/lib/fa/angle-right'
 import ArrowLeft from 'react-icons/lib/fa/angle-left'
+import Avatar from '../components/Avatar'
+import Divider from '../components/Divider'
+import Card from '../components/Card'
 
-const TrayWrapper = styled.div`
+const SwipeWrapper = styled.div`
 	position: relative;
 	overflow: hidden;
 `
 
-const Review = styled.div`width: 75%;`
+const Review = styled.div`
+	width: 75%;
+	display: flex;
+	justify-content: center;
+`
 
 const Item = styled.div`
 	width: 30%;
@@ -51,7 +58,42 @@ const ReviewWrapper = styled.div`
 	padding: 0 4px;
 `
 
-export default class Tray extends Component {
+const Name = styled.p`
+	margin: 0;
+	font-size: ${toRem(12)};
+	font-weight: 400;
+	color: ${theme.textBlack};
+`
+
+const Flex = styled.div`
+	display: flex;
+	justify-content: center;
+`
+
+const Description = styled.p`
+	font-size: ${toRem(12)};
+	padding-left: ${toRem(8)};
+	font-weight: lighter;
+	color: ${theme.textBlack};
+`
+
+const CardWithBar = styled(Card)`
+	max-width: ${toRem(225)};
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		height: 60px;
+		left: 0;
+		right: 0;
+		background: ${theme.darkRed};
+		z-index: 0;
+		border-top-left-radius: ${toRem(5)};
+		border-top-right-radius: ${toRem(5)};
+	}
+`
+
+export default class Testimonial extends Component {
 	state = {
 		index: 0,
 		items: this.props.items
@@ -70,12 +112,12 @@ export default class Tray extends Component {
 		const { items } = this.state
 
 		return (
-			<TrayWrapper>
+			<SwipeWrapper>
 				<ButtonLeft onClick={this.handleLeft}>
-					<ArrowLeft />
+					<ArrowLeft size={28} color={theme.textBlack} />
 				</ButtonLeft>
 				<ButtonRight onClick={this.handleRight}>
-					<ArrowRight />
+					<ArrowRight size={28} color={theme.textBlack} />
 				</ButtonRight>
 				<ReactSwipe
 					ref={node => (this.slideshow = node)}
@@ -84,13 +126,22 @@ export default class Tray extends Component {
 					{items.map((item, i) => (
 						<ReviewWrapper>
 							<Review>
-								<p>"{item.review}"</p>
-								<p>{item.name}</p>
+								<CardWithBar background={theme.aliceBlue}>
+									<Flex>
+										<Avatar
+											src="http://www.dentaltownsmiles.com/wp-content/uploads/2015/03/kid-with-braces-square.jpg"
+											height={80}
+										/>
+									</Flex>
+									<Divider color={theme.darkRed} />
+									<Description>"{item.review}"</Description>
+									<Name>{item.name}</Name>
+								</CardWithBar>
 							</Review>
 						</ReviewWrapper>
 					))}
 				</ReactSwipe>
-			</TrayWrapper>
+			</SwipeWrapper>
 		)
 	}
 
