@@ -4,7 +4,8 @@ import theme from '../theme/theme'
 import { toRem } from '../utils/utils'
 
 const Avatar = styled.img`
-	width: 100%;
+	width: auto;
+	height: 300px;
 	border-radius: 100%;
 `
 

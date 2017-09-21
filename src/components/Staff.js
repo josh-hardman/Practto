@@ -8,10 +8,16 @@ import Chip from '../components/Chip'
 import Avatar from '../components/Avatar'
 import SectionParagraph from '../components/SectionParagraph'
 
+const AvatarWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+`
+
 const ChipWrapper = styled.div`
 	margin-top: ${toRem(18)};
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 `
 
 const DescriptionWrapper = styled.div`
@@ -53,7 +59,9 @@ class Staff extends Component {
 		const { index, items } = this.state
 		return (
 			<div>
-				<Avatar src={items[index].href} />
+				<AvatarWrapper>
+					<Avatar src={items[index].href} />
+				</AvatarWrapper>
 				<Name>{items[index].name}</Name>
 				<DescriptionWrapper>
 					<SectionParagraph color={theme.textBlack}>
