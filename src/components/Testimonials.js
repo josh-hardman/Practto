@@ -13,6 +13,8 @@ const TrayWrapper = styled.div`
 	overflow: hidden;
 `
 
+const Review = styled.div`width: 75%;`
+
 const Item = styled.div`
 	width: 30%;
 	float: left;
@@ -22,7 +24,8 @@ const ButtonLeft = styled.button`
 	background: none;
 	height: 100%;
 	border: none;
-	${'' /* outline       : none; */} position: absolute;
+	outline: none;
+	position: absolute;
 	left: 0;
 	top: 0px;
 	bottom: 0px;
@@ -33,7 +36,8 @@ const ButtonRight = styled.button`
 	background: none;
 	height: 100%;
 	border: none;
-	${'' /* outline: none; */} position: absolute;
+	outline: none;
+	position: absolute;
 	right: 0;
 	top: 0px;
 	bottom: 0px;
@@ -77,7 +81,14 @@ export default class Tray extends Component {
 					ref={node => (this.slideshow = node)}
 					swipeOptions={{ continuous: true }}
 				>
-					{items.map((item, i) => <ReviewWrapper>{item}</ReviewWrapper>)}
+					{items.map((item, i) => (
+						<ReviewWrapper>
+							<Review>
+								<p>"{item.review}"</p>
+								<p>{item.name}</p>
+							</Review>
+						</ReviewWrapper>
+					))}
 				</ReactSwipe>
 			</TrayWrapper>
 		)

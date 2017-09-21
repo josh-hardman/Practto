@@ -27,7 +27,7 @@ const StyledLineItem = styled.a`
 
 const Detail = styled.span`
 	padding-left: 8px;
-	font-size: ${toRem(12)};
+	font-size: ${toRem(14)};
 `
 
 const LineItem = ({ href, children }) => (
@@ -88,19 +88,19 @@ const Contact = () => (
 		<ContactBlock>
 			<List>
 				<LineItem href="asdf">
-					<Phone />
+					<Phone size={18} />
 					<Detail>(720) 666-0456</Detail>
 				</LineItem>
 				<LineItem href="asdf">
-					<Email />
+					<Email size={18} />
 					<Detail>jhardman@gmail.com</Detail>
 				</LineItem>
 				<LineItem href="asdf">
-					<Web />
+					<Web size={18} />
 					<Detail>www.joshhardman.com</Detail>
 				</LineItem>
 				<LineItem href="asdf">
-					<Place />
+					<Place size={18} />
 					<Detail>892 S 2040 W Orem, UT</Detail>
 				</LineItem>
 			</List>

@@ -171,7 +171,24 @@ const IndexPage = ({ theme }) => (
 				<SectionHeader color={theme.textBlack}>
 					Patient Testimonials
 				</SectionHeader>
-				<Testimonials items={[1, 2, 3, 4, 5, 6]} />
+				<Testimonials
+					items={[
+						{
+							name: 'Maloree Purdy Lom',
+							review:
+								'I took my son here and we had an awesome experience. Staff was super friendly and life is good'
+						},
+						{
+							name: 'Darth Vader',
+							review:
+								'The force is strong with this one. Its potential to cause problems has certainly been confirmed'
+						},
+						{
+							name: 'Luke Skywalker',
+							review: 'Uncle Owen, this R2 units got a bad motivator!'
+						}
+					]}
+				/>
 			</Card>
 		</Section>
 
