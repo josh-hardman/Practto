@@ -123,7 +123,7 @@ export default class Testimonial extends Component {
           ref={node => (this.slideshow = node)}
           swipeOptions={{ continuous: true }}
         >
-          {items.length > 0 &&
+          {items &&
             items.map((item, i) => (
               <ReviewWrapper key={i}>
                 <Review>
