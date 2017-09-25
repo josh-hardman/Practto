@@ -1,8 +1,15 @@
 module.exports = {
 	siteMetadata: {
-		title: `Gatsby Default Starter`
+		title: `Practto is awesome`
 	},
 	plugins: [
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `src`,
+				path: `${__dirname}/src/`
+			}
+		},
 		{
 			resolve: `gatsby-source-contentful`,
 			options: {

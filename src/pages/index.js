@@ -1,260 +1,74 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Link from 'gatsby-link'
-import Section from '../layouts/Section'
-import { withTheme } from 'styled-components'
-import ListingHeader from '../components/ListingHeader'
-import SectionHeader from '../components/SectionHeader'
-import SectionParagraph from '../components/SectionParagraph'
-import Divider from '../components/Divider'
-import Staff from '../components/Staff'
-import Contact from '../components/Contact'
-import Testimonials from '../components/Testimonials'
-import MediaPlayer from '../components/MediaPlayer'
-import Card from '../components/Card'
-import TextField from 'material-ui/TextField'
-import DatePicker from 'material-ui/DatePicker'
-import AutoComplete from 'material-ui/AutoComplete'
-import Toggle from 'material-ui/Toggle'
-import RaisedButton from 'material-ui/RaisedButton'
 import styled from 'styled-components'
 import { toRem } from '../utils/utils'
-import { toggleLabel } from '../theme/materialStyles'
+import theme from '../theme/theme'
+import Section from '../layouts/Section'
+import Typist from 'react-typist'
 
-const fruit = [
-	'Apple',
-	'Apricot',
-	'Avocado',
-	'Banana',
-	'Bilberry',
-	'Blackberry',
-	'Blackcurrant',
-	'Blueberry',
-	'Boysenberry',
-	'Blood Orange',
-	'Cantaloupe',
-	'Currant',
-	'Cherry',
-	'Cherimoya',
-	'Cloudberry',
-	'Coconut',
-	'Cranberry',
-	'Clementine',
-	'Damson',
-	'Date',
-	'Dragonfruit',
-	'Durian',
-	'Elderberry',
-	'Feijoa',
-	'Fig',
-	'Goji berry',
-	'Gooseberry',
-	'Grape',
-	'Grapefruit',
-	'Guava',
-	'Honeydew',
-	'Huckleberry',
-	'Jabouticaba',
-	'Jackfruit',
-	'Jambul',
-	'Jujube',
-	'Juniper berry',
-	'Kiwi fruit',
-	'Kumquat',
-	'Lemon',
-	'Lime',
-	'Loquat',
-	'Lychee',
-	'Nectarine',
-	'Mango',
-	'Marion berry',
-	'Melon',
-	'Miracle fruit',
-	'Mulberry',
-	'Mandarine',
-	'Olive',
-	'Orange',
-	'Papaya',
-	'Passionfruit',
-	'Peach',
-	'Pear',
-	'Persimmon',
-	'Physalis',
-	'Plum',
-	'Pineapple',
-	'Pumpkin',
-	'Pomegranate',
-	'Pomelo',
-	'Purple Mangosteen',
-	'Quince',
-	'Raspberry',
-	'Raisin',
-	'Rambutan',
-	'Redcurrant',
-	'Salal berry',
-	'Satsuma',
-	'Star fruit',
-	'Strawberry',
-	'Squash',
-	'Salmonberry',
-	'Tamarillo',
-	'Tamarind',
-	'Tomato',
-	'Tangerine',
-	'Ugli fruit',
-	'Watermelon'
-]
-
-const FinePrint = styled.p`
-	padding: ${toRem(12)} 0;
-	font-size: ${toRem(8)};
-	line-height: ${toRem(12)};
+const Background = styled.div`
+	background: ${theme.mediumBlue};
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: -2;
 `
 
-const OffersWrapper = styled.div`margin-bottom: ${toRem(12)};`
-
-const Offers = styled.h3`
-	font-size: ${toRem(14)};
-	margin: ${toRem(24)} 0 ${toRem(12)};
+const Lede = styled.h1`
+	font-size: ${toRem(33)};
+	text-align: center;
+	color: ${theme.white};
 	font-weight: normal;
 `
 
-const IndexPage = ({ theme }) => (
-	<div>
-		<Section background={theme.lightBlue} zIndex={-1}>
-			<ListingHeader>Canyonlands Dental</ListingHeader>
-		</Section>
+class Landing extends Component {
+	state = {
+		words: ['Dentist', 'Chiropractor', 'Lawyer'],
+		index: 0
+	}
 
-		<Section background={theme.mediumBlue} zIndex={-2}>
-			<Card background={theme.aliceBlue}>
-				<SectionHeader color={theme.textBlack}>About Us</SectionHeader>
-				<SectionParagraph color={theme.textBlack}>
-					Welcome to Canyonlands Dental! We are glad you are here. Here at
-					Canyonlands we work hard every day to put a smile on you face. We hope
-					to see you soon!
-				</SectionParagraph>
+	onHeaderTyped = () => {
+		console.log('end')
+		this.setState({
+			index: 1
+		})
+		this.forceUpdate()
+	}
 
-				<Divider />
+	render() {
+		const { index, words } = this.state
+		return (
+			<div>
+				<Section background={theme.lightBlue}>
+					<Background />
+					<Lede>Find Your Family</Lede>
+					<Typist
+						className="TypistExample-message"
+						delayGenerator={this.delayGen}
+						cursor={{ hideWhenDone: true }}
+					>
+						* Easy to style
+						<Typist.Delay ms={1250} />
+						<br />
+						* Easy to customize
+						<Typist.Delay ms={1250} />
+						<br />
+						* Easy to use backspace
+						<Typist.Backspace count={23} delay={750} />
+						<span>
+							<a href={'test'} className="flash">
+								docs
+							</a>
+						</span>
+						<br />
+					</Typist>
+					<Link to="/">Go back to the homepage</Link>
+				</Section>
+			</div>
+		)
+	}
+}
 
-				<SectionHeader color={theme.textBlack}>Staff Members</SectionHeader>
-				<Staff
-					items={[
-						{
-							href:
-								'http://doctorsquaremohali.com/wp-content/uploads/2017/03/ankur-300x300.jpg',
-							name: 'Luke Skywalker',
-							description: 'Luke is strong in the force'
-						},
-						{
-							href:
-								'http://www.dentaltownsmiles.com/wp-content/uploads/2015/03/kid-with-braces-square.jpg',
-							name: 'Darth Vader',
-							description: 'Vader with force choke you'
-						},
-						{
-							href:
-								'https://www.memorialdental.ca/wp-content/uploads/2016/02/dr-mohamed-soliman-memorial-dental.jpg',
-							name: 'Han Solo',
-							description: 'A smuggler that is wanted in the galaxy'
-						}
-					]}
-				/>
-
-				<Divider />
-
-				<SectionHeader color={theme.textBlack}>Welcome Video</SectionHeader>
-				<MediaPlayer url="https://www.youtube.com/embed/3ZCF2iFqQLs" />
-			</Card>
-		</Section>
-
-		<Section background={theme.lightRed} zIndex={-3}>
-			{/* <Card background={theme.aliceBlue}> */}
-			<SectionHeader color={theme.white}>Patient Testimonials</SectionHeader>
-			<Testimonials
-				items={[
-					{
-						name: 'Maloree Purdy Lom',
-						review:
-							'I took my son here and we had an awesome experience. Staff was super friendly and life is good'
-					},
-					{
-						name: 'Darth Vader',
-						review:
-							'The force is strong with this one. Its potential to cause problems has certainly been confirmed'
-					},
-					{
-						name: 'Luke Skywalker',
-						review: 'Uncle Owen, this R2 units got a bad motivator!'
-					}
-				]}
-			/>
-			{/* </Card> */}
-		</Section>
-
-		<Section background={theme.white} zIndex={-4}>
-			<Card>
-				<SectionHeader color={theme.textBlack}>Contact Us</SectionHeader>
-				<Contact />
-			</Card>
-		</Section>
-
-		<Section background={theme.orange} zIndex={-5} squareBottom>
-			<Card>
-				<SectionHeader color={theme.textBlack}>
-					Request Appointment
-				</SectionHeader>
-				<TextField floatingLabelFixed={true} floatingLabelText="First Name" />
-				<TextField floatingLabelFixed={true} floatingLabelText="Last Name" />
-				<TextField
-					floatingLabelFixed={true}
-					floatingLabelText="Email Address"
-				/>
-				<TextField floatingLabelFixed={true} floatingLabelText="Phone Number" />
-				<DatePicker
-					floatingLabelFixed={true}
-					floatingLabelText="Request Date"
-					minDate={new Date()}
-				/>
-				<AutoComplete
-					floatingLabelFixed={true}
-					floatingLabelText="Insurance Provider"
-					filter={AutoComplete.fuzzyFilter}
-					dataSource={fruit}
-					maxSearchResults={5}
-				/>
-				<OffersWrapper>
-					<Offers>Special Offers</Offers>
-					<Toggle
-						labelStyle={toggleLabel}
-						label="Free Consultation"
-						labelPosition="right"
-					/>
-					<Toggle
-						labelStyle={toggleLabel}
-						label="50% off first cleaning"
-						labelPosition="right"
-					/>
-					<Toggle
-						labelStyle={toggleLabel}
-						label="$20 cash back"
-						labelPosition="right"
-					/>
-				</OffersWrapper>
-
-				<TextField
-					floatingLabelText="Additional Comments"
-					multiLine={true}
-					floatingLabelFixed={true}
-					rows={1}
-				/>
-				<FinePrint>
-					* This form will request an appointment on your behalf. You wiill
-					receive a follow up via email or phone from the listed practice to
-					confirm your visit.
-				</FinePrint>
-				<RaisedButton label="Submit" primary />
-			</Card>
-		</Section>
-	</div>
-)
-
-export default withTheme(IndexPage)
+export default Landing

@@ -1,119 +1,117 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import theme from '../theme/theme'
-import { toRem } from '../utils/utils'
-import Phone from 'react-icons/lib/fa/phone'
-import Email from 'react-icons/lib/md/email'
-import Web from 'react-icons/lib/fa/globe'
-import Place from 'react-icons/lib/md/place'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import theme from "../theme/theme";
+import { toRem } from "../utils/utils";
+import Phone from "react-icons/lib/fa/phone";
+import Email from "react-icons/lib/md/email";
+import Web from "react-icons/lib/fa/globe";
+import Place from "react-icons/lib/md/place";
+import { googleMaps } from "../../config";
 
-import { compose, withProps, withStateHandlers } from 'recompose'
-import FaAnchor from 'react-icons/lib/fa/anchor'
+import { compose, withProps, withStateHandlers } from "recompose";
+import FaAnchor from "react-icons/lib/fa/anchor";
 import {
-	withScriptjs,
-	withGoogleMap,
-	GoogleMap,
-	Marker,
-	InfoWindow
-} from 'react-google-maps'
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps";
 
 const StyledLineItem = styled.a`
-	color: ${props => (props.href ? theme.link : theme.textBlack)};
-	display: flex;
-	align-items: center;
-	text-decoration: none;
-`
+  color: ${props => (props.href ? theme.link : theme.textBlack)};
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+`;
 
 const Detail = styled.span`
-	padding-left: 8px;
-	font-size: ${toRem(14)};
-`
+  padding-left: 8px;
+  font-size: ${toRem(14)};
+`;
 
 const LineItem = ({ href, children }) => (
-	<li>
-		<StyledLineItem href={href}>{children}</StyledLineItem>
-	</li>
-)
+  <li>
+    <StyledLineItem href={href}>{children}</StyledLineItem>
+  </li>
+);
 
 const CenterContent = styled.div`
-	display: flex;
-	justify-content: center;
-`
+  display: flex;
+  justify-content: center;
+`;
 
-const ContactBlock = styled.div`width: 100%;`
+const ContactBlock = styled.div`width: 100%;`;
 
 const List = styled.ul`
-	margin: 0;
-	padding: 0 ${toRem(18)};
-	list-style: none;
-	line-height: ${toRem(18)};
-`
+  margin: 0;
+  padding: 0 ${toRem(18)};
+  list-style: none;
+  line-height: ${toRem(18)};
+`;
 
-const MapContainer = styled.div`padding: ${toRem(24)} ${toRem(14)};`
+const MapContainer = styled.div`padding: ${toRem(24)} ${toRem(14)};`;
 
 const MapWithInfoWindow = compose(
-	withStateHandlers(
-		() => ({
-			isOpen: false
-		}),
-		{
-			onToggleOpen: ({ isOpen }) => () => ({
-				isOpen: !isOpen
-			})
-		}
-	),
-	withScriptjs,
-	withGoogleMap
-)(props => (
-	<GoogleMap
-		defaultZoom={13}
-		defaultCenter={{ lat: 40.2804128, lng: -111.74433369999997 }}
-	>
-		<Marker
-			position={{ lat: 40.2804128, lng: -111.74433369999997 }}
-			onClick={props.onToggleOpen}
-		>
-			{props.isOpen && (
-				<InfoWindow onCloseClick={props.onToggleOpen}>
-					<FaAnchor />
-				</InfoWindow>
-			)}
-		</Marker>
-	</GoogleMap>
-))
+  withStateHandlers(
+    () => ({
+      isOpen: false
+    }),
+    {
+      onToggleOpen: ({ isOpen }) => () => ({
+        isOpen: !isOpen
+      })
+    }
+  ),
+  withScriptjs,
+  withGoogleMap
+)(({ lat, lng, isOpen, onToggleOpen, practice }) => (
+  <GoogleMap defaultZoom={13} defaultCenter={{ lat, lng }}>
+    <Marker position={{ lat, lng }} onClick={onToggleOpen}>
+      {isOpen && (
+        <InfoWindow onCloseClick={onToggleOpen}>
+          <span>{practice}</span>
+        </InfoWindow>
+      )}
+    </Marker>
+  </GoogleMap>
+));
 
-const Contact = () => (
-	<CenterContent>
-		<ContactBlock>
-			<List>
-				<LineItem href="asdf">
-					<Phone size={18} />
-					<Detail>(720) 666-0456</Detail>
-				</LineItem>
-				<LineItem href="asdf">
-					<Email size={18} />
-					<Detail>jhardman@gmail.com</Detail>
-				</LineItem>
-				<LineItem href="asdf">
-					<Web size={18} />
-					<Detail>www.joshhardman.com</Detail>
-				</LineItem>
-				<LineItem href="asdf">
-					<Place size={18} />
-					<Detail>892 S 2040 W Orem, UT</Detail>
-				</LineItem>
-			</List>
-			<MapContainer>
-				<MapWithInfoWindow
-					googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-					loadingElement={<div style={{ height: `100%` }} />}
-					containerElement={<div style={{ height: `400px` }} />}
-					mapElement={<div style={{ height: `100%` }} />}
-				/>
-			</MapContainer>
-		</ContactBlock>
-	</CenterContent>
-)
+const Contact = ({ phone, email, website, location, practice }) => (
+  <CenterContent>
+    <ContactBlock>
+      <List>
+        <LineItem href="asdf">
+          <Phone size={18} />
+          <Detail>{phone}</Detail>
+        </LineItem>
+        <LineItem href="asdf">
+          <Email size={18} />
+          <Detail>{email}</Detail>
+        </LineItem>
+        <LineItem href="asdf">
+          <Web size={18} />
+          <Detail>{website}</Detail>
+        </LineItem>
+        <LineItem href="asdf">
+          <Place size={18} />
+          <Detail>stuff</Detail>
+        </LineItem>
+      </List>
+      <MapContainer>
+        <MapWithInfoWindow
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${googleMaps}`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          lat={location.lat}
+          lng={location.lon}
+          practice={practice}
+        />
+      </MapContainer>
+    </ContactBlock>
+  </CenterContent>
+);
 
-export default Contact
+export default Contact;
