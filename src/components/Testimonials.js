@@ -123,23 +123,24 @@ export default class Testimonial extends Component {
           ref={node => (this.slideshow = node)}
           swipeOptions={{ continuous: true }}
         >
-          {items.map((item, i) => (
-            <ReviewWrapper key={i}>
-              <Review>
-                <CardWithBar background={theme.aliceBlue}>
-                  <Flex>
-                    <Avatar
-                      src={item.image ? item.image.file.url : ""}
-                      height={80}
-                    />
-                  </Flex>
-                  <Divider color={theme.darkRed} />
-                  <Description>{`"${item.content}"`}</Description>
-                  <Name>{item.name}</Name>
-                </CardWithBar>
-              </Review>
-            </ReviewWrapper>
-          ))}
+          {items.length > 0 &&
+            items.map((item, i) => (
+              <ReviewWrapper key={i}>
+                <Review>
+                  <CardWithBar background={theme.aliceBlue}>
+                    <Flex>
+                      <Avatar
+                        src={item.image ? item.image.file.url : ""}
+                        height={80}
+                      />
+                    </Flex>
+                    <Divider color={theme.darkRed} />
+                    <Description>{`"${item.content}"`}</Description>
+                    <Name>{item.name}</Name>
+                  </CardWithBar>
+                </Review>
+              </ReviewWrapper>
+            ))}
         </ReactSwipe>
       </SwipeWrapper>
     );
